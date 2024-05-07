@@ -617,7 +617,7 @@ var validation_procedure_faces = {
     timeline_variables: validation_shuffled_doubled,
     sample :{
         type: 'without-replacement',
-        size: 10
+        size: 1//0
     }
 };
       
@@ -627,7 +627,7 @@ var trial_procedure_faces = {
     randomize_order: true,
     sample: {
         type: 'with-replacement',
-        size: 50
+        size: 5//0
     }
 };
           
@@ -657,7 +657,7 @@ var quick_break = {
 var face_procedure = {
     timeline: [trial_procedure_faces, check_faces, validation_procedure_faces, check_faces, quick_break],
     randomize_order: true,
-    repetitions: 1
+    repetitions: 1//0
 };
 timeline.push(face_procedure);
       
@@ -708,6 +708,7 @@ var demographics = {
     timeline.push(id_age);
       
       
+             timeline.push(save_data);
       
    var goodbye = {
       type: jsPsychHtmlButtonResponse,
@@ -725,7 +726,7 @@ var demographics = {
 
 
     
-       timeline.push(save_data);
+
       
     jsPsych.run(timeline);
 
