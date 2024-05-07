@@ -503,11 +503,14 @@
 
       
       // define the validation trials!
-      var validation_trial = {
+    var validation_trial = {
           type: jsPsychImageButtonResponse,
-            stimulus: jsPsych.timelineVariable('head'),         
+            stimulus: function(){
+                row = validation_shuffled_doubled.pop();
+                head = row.head;
+                return head;},
             choices: function(){
-                arr_pair = [jsPsych.timelineVariable('choice_1'), jsPsych.timelineVariable('choice_2')];
+                arr_pair = [row.choice_1, row.choice_2];
                 return arr_pair;
             },
             button_html: '<button class="jspsych-btn"><img src= %choice%></button>',
@@ -519,13 +522,12 @@
                 if (lasttrialdata_rt < 1000){
                       data.speedy = true;
                     } else {
-                      data.speedy = false; 
+                      data.speedy = false;
                 }
               data.validation = true;
               data.sampleAlg = "validation";
           }
       };
-      
       
       // define the attention checks!
       var check_trial = {
@@ -617,7 +619,7 @@ var validation_procedure_faces = {
     timeline_variables: validation_shuffled_doubled,
     sample :{
         type: 'without-replacement',
-        size: 1//0
+        size: 10
     }
 };
       
@@ -627,7 +629,7 @@ var trial_procedure_faces = {
     randomize_order: true,
     sample: {
         type: 'with-replacement',
-        size: 5//0
+        size: 50
     }
 };
           
@@ -657,7 +659,7 @@ var quick_break = {
 var face_procedure = {
     timeline: [trial_procedure_faces, check_faces, validation_procedure_faces, check_faces, quick_break],
     randomize_order: true,
-    repetitions: 1//0
+    repetitions: 10
 };
 timeline.push(face_procedure);
       
