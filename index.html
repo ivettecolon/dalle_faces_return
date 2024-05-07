@@ -44,7 +44,7 @@
           /* create timeline */
     var timeline = [];
     var secret_code  = jsPsych.randomization.randomID(8);
-    var filename = "triplets_fpo_faces_returners_" + secret_code;
+    var filename = "triplets_fpo_faces_returners_" + secret_code + ".csv";
 
       
     var urlvar = jsPsych.data.urlVariables();  
@@ -657,7 +657,7 @@ var quick_break = {
 var face_procedure = {
     timeline: [trial_procedure_faces, check_faces, validation_procedure_faces, check_faces, quick_break],
     randomize_order: true,
-    repetitions: 10
+    repetitions: 1
 };
 timeline.push(face_procedure);
       
@@ -725,7 +725,7 @@ var demographics = {
 
 
     
-       
+       timeline.push(save_data);
       
     jsPsych.run(timeline);
 
