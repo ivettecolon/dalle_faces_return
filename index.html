@@ -1,0 +1,738 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Individual Differences Triplet Embeddings: Faces</title>
+      
+    <script src="https://unpkg.com/jspsych@7.2.1"></script>
+    <script src="https://unpkg.com/@jspsych/plugin-html-keyboard-response@1.1.0"></script>
+    <script src="https://unpkg.com/@jspsych/plugin-image-keyboard-response@1.1.0"></script>
+    <script src="https://unpkg.com/@jspsych/plugin-image-button-response@1.1.0"></script>
+    <script src="https://unpkg.com/@jspsych/plugin-fullscreen@1.1.0"></script>
+    <script src="https://unpkg.com/@jspsych/plugin-audio-button-response@1.1.0"></script>
+    <script src="https://unpkg.com/@jspsych/plugin-audio-keyboard-response@1.1.0"></script>
+    <script src="https://unpkg.com/@jspsych/plugin-survey-multi-select@1.1.0"></script>
+    <script src="https://unpkg.com/@jspsych/plugin-survey-text@1.1.0"></script>
+    <script src="https://unpkg.com/@jspsych/plugin-html-button-response@1.1.0"></script>
+    <script src="https://unpkg.com/@jspsych/plugin-survey-likert@1.1.0"></script>
+    <script src="https://unpkg.com/@jspsych/plugin-call-function@1.1.0"></script>
+    <script src="https://unpkg.com/@jspsych/plugin-preload@1.1.0"></script>
+    <link href="https://unpkg.com/jspsych@7.2.1/css/jspsych.css" rel="stylesheet" type="text/css" />
+    <script src="https://unpkg.com/@jspsych-contrib/plugin-pipe"></script>
+      
+      
+  </head>
+  <body></body>
+    
+  <script>
+      
+
+          
+    var jsPsych = initJsPsych({
+        show_progress_bar:true,
+        on_data_update: function(){
+            jsPsych.data.addProperties({worker_id: urlvar.workerId});
+            timeline.push(save_data);
+        },
+        on_finish: function(){
+            jsPsych.data.addProperties({worker_id: urlvar.workerId});
+            timeline.push(save_data);
+        },
+        max_load_time: 120000
+    });
+      
+
+          /* create timeline */
+    var timeline = [];
+    var secret_code  = jsPsych.randomization.randomID(8);
+    var filename = "triplets_fpo_faces_returners_" + secret_code;
+
+      
+    var urlvar = jsPsych.data.urlVariables();  
+      
+      
+    const save_data = {
+      type: jsPsychPipe,
+      action: "save",
+      experiment_id: "HiwjjuIcfGrH",
+      filename: filename,
+      data_string: ()=>jsPsych.data.get().csv()
+    };
+      
+    
+    var preload = {
+        type: jsPsychPreload,
+        auto_preload: true,
+        images: ['resources/rural_day_old_black_man_1.png',
+                'resources/rural_day_old_black_woman_1.png',
+                'resources/rural_day_old_white_man_1.png',
+                'resources/rural_day_old_white_woman_1.png',
+                'resources/rural_day_young_black_man_1.png',
+                'resources/rural_day_young_black_woman_1.png',
+                'resources/rural_day_young_white_man_1.png',
+                'resources/rural_day_young_white_woman_1.png',
+                'resources/rural_eve_old_black_man_1.png',
+                'resources/rural_eve_old_black_woman_1.png',
+                'resources/rural_eve_old_white_man_1.png',
+                'resources/rural_eve_old_white_woman_1.png',
+                'resources/rural_eve_young_black_man_1.png',
+                'resources/rural_eve_young_black_woman_1.png',
+                'resources/rural_eve_young_white_man_1.png',
+                'resources/rural_eve_young_white_woman_1.png',
+                'resources/urban_day_old_black_man_1.png',
+                'resources/urban_day_old_black_woman_1.png',
+                'resources/urban_day_old_white_man_1.png',
+                'resources/urban_day_old_white_woman_1.png',
+                'resources/urban_day_young_black_man_1.png',
+                'resources/urban_day_young_black_woman_1.png',
+                'resources/urban_day_young_white_man_1.png',
+                'resources/urban_day_young_white_woman_1.png',
+                'resources/urban_eve_old_black_man_1.png',
+                'resources/urban_eve_old_black_woman_1.png',
+                'resources/urban_eve_old_white_man_1.png',
+                'resources/urban_eve_old_white_woman_1.png',
+                'resources/urban_eve_young_black_man_1.png',
+                'resources/urban_eve_young_black_woman_1.png',
+                'resources/urban_eve_young_white_man_1.png',
+                'resources/urban_eve_young_white_woman_1.png'],
+        show_progress_bar: true,
+        message: "Loading experiment files...",
+        error_message: "Oops! There's a problem loading files. Please refresh the page to try again."
+    }  
+    timeline.push(preload);
+    
+      
+        var stimuli_face = [
+                {face: 'resources/rural_day_old_black_man_1.png'},
+                {face: 'resources/rural_day_old_black_woman_1.png'},
+                {face: 'resources/rural_day_old_white_man_1.png'},
+                {face: 'resources/rural_day_old_white_woman_1.png'},
+                {face: 'resources/rural_day_young_black_man_1.png'},
+                {face: 'resources/rural_day_young_black_woman_1.png'},
+                {face: 'resources/rural_day_young_white_man_1.png'},
+                {face: 'resources/rural_day_young_white_woman_1.png'},
+                {face: 'resources/rural_eve_old_black_man_1.png'},
+                {face: 'resources/rural_eve_old_black_woman_1.png'},
+                {face: 'resources/rural_eve_old_white_man_1.png'},
+                {face: 'resources/rural_eve_old_white_woman_1.png'},
+                {face: 'resources/rural_eve_young_black_man_1.png'},
+                {face: 'resources/rural_eve_young_black_woman_1.png'},
+                {face: 'resources/rural_eve_young_white_man_1.png'},
+                {face: 'resources/rural_eve_young_white_woman_1.png'},
+                {face: 'resources/urban_day_old_black_man_1.png'},
+                {face: 'resources/urban_day_old_black_woman_1.png'},
+                {face: 'resources/urban_day_old_white_man_1.png'},
+                {face: 'resources/urban_day_old_white_woman_1.png'},
+                {face: 'resources/urban_day_young_black_man_1.png'},
+                {face: 'resources/urban_day_young_black_woman_1.png'},
+                {face: 'resources/urban_day_young_white_man_1.png'},
+                {face: 'resources/urban_day_young_white_woman_1.png'},
+                {face: 'resources/urban_eve_old_black_man_1.png'},
+                {face: 'resources/urban_eve_old_black_woman_1.png'},
+                {face: 'resources/urban_eve_old_white_man_1.png'},
+                {face: 'resources/urban_eve_old_white_woman_1.png'},
+                {face: 'resources/urban_eve_young_black_man_1.png'},
+                {face: 'resources/urban_eve_young_black_woman_1.png'},
+                {face: 'resources/urban_eve_young_white_man_1.png'},
+                {face: 'resources/urban_eve_young_white_woman_1.png'}
+            ];
+            
+            
+      
+      var face_arr = ['resources/rural_day_old_black_man_1.png',
+                'resources/rural_day_old_black_woman_1.png',
+                'resources/rural_day_old_white_man_1.png',
+                'resources/rural_day_old_white_woman_1.png',
+                'resources/rural_day_young_black_man_1.png',
+                'resources/rural_day_young_black_woman_1.png',
+                'resources/rural_day_young_white_man_1.png',
+                'resources/rural_day_young_white_woman_1.png',
+                'resources/rural_eve_old_black_man_1.png',
+                'resources/rural_eve_old_black_woman_1.png',
+                'resources/rural_eve_old_white_man_1.png',
+                'resources/rural_eve_old_white_woman_1.png',
+                'resources/rural_eve_young_black_man_1.png',
+                'resources/rural_eve_young_black_woman_1.png',
+                'resources/rural_eve_young_white_man_1.png',
+                'resources/rural_eve_young_white_woman_1.png',
+                'resources/urban_day_old_black_man_1.png',
+                'resources/urban_day_old_black_woman_1.png',
+                'resources/urban_day_old_white_man_1.png',
+                'resources/urban_day_old_white_woman_1.png',
+                'resources/urban_day_young_black_man_1.png',
+                'resources/urban_day_young_black_woman_1.png',
+                'resources/urban_day_young_white_man_1.png',
+                'resources/urban_day_young_white_woman_1.png',
+                'resources/urban_eve_old_black_man_1.png',
+                'resources/urban_eve_old_black_woman_1.png',
+                'resources/urban_eve_old_white_man_1.png',
+                'resources/urban_eve_old_white_woman_1.png',
+                'resources/urban_eve_young_black_man_1.png',
+                'resources/urban_eve_young_black_woman_1.png',
+                'resources/urban_eve_young_white_man_1.png',
+                'resources/urban_eve_young_white_woman_1.png']
+      
+      //plan: 
+      //1) make a pool of random triplets
+      //2) sample
+      
+      
+    
+          var validation_faces = [
+            {head: 'resources/rural_day_young_black_woman_1.png',choice_1: 'resources/rural_eve_old_black_man_1.png',choice_2: 'resources/urban_day_young_white_woman_1.png'},
+            {head: 'resources/rural_eve_old_black_woman_1.png', choice_1: 'resources/urban_eve_young_black_woman_1.png',choice_2: 'resources/rural_eve_old_white_woman_1.png'},
+            {head: 'resources/urban_eve_old_white_woman_1.png', choice_1: 'resources/urban_eve_old_white_man_1.png',choice_2: 'resources/urban_day_old_black_man_1.png'},
+            {head: 'resources/rural_day_young_black_man_1.png', choice_1: 'resources/rural_eve_old_white_man_1.png',choice_2: 'resources/rural_day_old_white_man_1.png'},
+            {head: 'resources/rural_eve_young_white_woman_1.png', choice_1: 'resources/urban_day_old_white_woman_1.png', choice_2: 'resources/urban_eve_young_white_woman_1.png'},
+            {head: 'resources/urban_eve_old_black_woman_1.png', choice_1: 'resources/rural_day_young_white_woman_1.png', choice_2: 'resources/urban_eve_young_black_woman_1.png'},
+            {head: 'resources/urban_eve_young_white_man_1.png', choice_1: 'resources/urban_day_old_white_woman_1.png', choice_2: 'resources/rural_day_old_black_man_1.png'},
+            {head: 'resources/urban_eve_young_black_man_1.png', choice_1: 'resources/rural_day_young_black_woman_1.png', choice_2: 'resources/urban_day_old_black_woman_1.png'},
+            {head: 'resources/urban_day_old_black_man_1.png', choice_1: 'resources/rural_eve_young_black_woman_1.png', choice_2: 'resources/urban_day_young_black_man_1.png'},
+            {head: 'resources/rural_day_old_white_woman_1.png', choice_1: 'resources/urban_eve_old_white_man_1.png', choice_2: 'resources/rural_day_old_black_man_1.png'},
+            {head: 'resources/urban_eve_young_white_woman_1.png', choice_1: 'resources/urban_day_young_white_woman_1.png', choice_2: 'resources/urban_day_old_white_man_1.png'},
+            {head: 'resources/urban_day_young_white_woman_1.png', choice_1: 'resources/rural_day_young_black_woman_1.png', choice_2: 'resources/urban_day_young_black_man_1.png'},
+            {head: 'resources/rural_eve_old_black_man_1.png', choice_1: 'resources/urban_day_young_white_man_1.png', choice_2: 'resources/urban_day_young_black_man_1.png'},
+            {head: 'resources/urban_eve_old_white_man_1.png', choice_1: 'resources/urban_eve_young_white_man_1.png', choice_2: 'resources/urban_eve_old_black_man_1.png'},
+            {head: 'resources/rural_eve_old_white_man_1.png', choice_1: 'resources/urban_eve_young_white_man_1.png', choice_2: 'resources/urban_day_old_white_woman_1.png'},
+            {head: 'resources/urban_eve_young_white_man_1.png', choice_1: 'resources/rural_eve_young_white_woman_1.png', choice_2: 'resources/rural_day_old_black_man_1.png'},
+            {head: 'resources/urban_day_old_black_woman_1.png', choice_1: 'resources/rural_day_old_black_man_1.png', choice_2: 'resources/rural_eve_young_black_man_1.png'},
+            {head: 'resources/rural_eve_young_black_man_1.png', choice_1: 'resources/rural_day_young_black_woman_1.png', choice_2: 'resources/rural_day_old_black_woman_1.png'},
+            {head: 'resources/rural_eve_young_white_man_1.png', choice_1: 'resources/urban_eve_young_black_man_1.png', choice_2: 'resources/urban_day_old_black_woman_1.png'},
+            {head: 'resources/urban_day_young_white_man_1.png', choice_1: 'resources/rural_day_young_white_woman_1.png', choice_2: 'resources/urban_eve_young_black_man_1.png'},
+            {head: 'resources/urban_day_old_white_man_1.png', choice_1: 'resources/urban_eve_old_black_woman_1.png', choice_2: 'resources/urban_day_young_black_man_1.png'},
+            {head: 'resources/urban_day_old_white_woman_1.png', choice_1: 'resources/rural_eve_old_white_man_1.png', choice_2: 'resources/urban_day_old_white_man_1.png'},
+            {head: 'resources/rural_eve_old_black_woman_1.png', choice_1: 'resources/urban_day_old_white_woman_1.png', choice_2: 'resources/rural_day_young_white_man_1.png'},
+            {head: 'resources/rural_eve_old_white_man_1.png', choice_1: 'resources/rural_eve_young_black_man_1.png', choice_2: 'resources/urban_day_old_black_woman_1.png'},
+            {head: 'resources/urban_eve_old_black_woman_1.png', choice_1: 'resources/urban_day_old_black_man_1.png', choice_2: 'resources/rural_day_old_white_man_1.png'},
+            {head: 'resources/rural_eve_young_white_woman_1.png', choice_1: 'resources/urban_day_young_white_woman_1.png', choice_2: 'resources/rural_eve_old_black_man_1.png'},
+            {head: 'resources/urban_eve_young_black_woman_1.png', choice_1: 'resources/urban_eve_old_black_woman_1.png', choice_2: 'resources/rural_eve_old_white_man_1.png'},
+            {head: 'resources/rural_day_old_white_man_1.png', choice_1: 'resources/rural_day_old_black_man_1.png', choice_2: 'resources/urban_day_old_white_man_1.png'},
+            {head: 'resources/rural_eve_old_black_woman_1.png', choice_1: 'resources/urban_day_young_black_man_1.png', choice_2: 'resources/rural_eve_old_white_woman_1.png'},
+            {head: 'resources/urban_eve_old_white_man_1.png', choice_1: 'resources/urban_eve_old_black_man_1.png', choice_2: 'resources/rural_eve_young_black_woman_1.png'},
+            {head: 'resources/urban_eve_old_black_man_1.png', choice_1: 'resources/urban_day_young_white_man_1.png', choice_2: 'resources/rural_eve_young_black_man_1.png'},
+            {head: 'resources/rural_eve_old_black_man_1.png', choice_1: 'resources/urban_day_old_black_man_1.png', choice_2: 'resources/rural_day_old_black_woman_1.png'},
+            {head: 'resources/urban_day_young_black_woman_1.png', choice_1: 'resources/urban_eve_old_white_man_1.png', choice_2: 'resources/urban_eve_old_white_woman_1.png'},
+            {head: 'resources/rural_eve_young_white_woman_1.png', choice_1: 'resources/rural_day_young_black_woman_1.png', choice_2: 'resources/rural_eve_old_black_man_1.png'},
+            {head: 'resources/urban_day_young_white_woman_1.png', choice_1: 'resources/rural_day_young_white_woman_1.png', choice_2: 'resources/rural_day_young_white_man_1.png'},
+            {head: 'resources/urban_eve_old_white_man_1.png', choice_1: 'resources/rural_day_young_white_woman_1.png', choice_2: 'resources/urban_eve_young_black_man_1.png'},
+            {head: 'resources/rural_day_old_white_woman_1.png', choice_1: 'resources/urban_eve_young_black_woman_1.png', choice_2: 'resources/rural_day_young_white_woman_1.png'},
+            {head: 'resources/rural_day_old_black_woman_1.png', choice_1: 'resources/rural_eve_young_black_man_1.png', choice_2: 'resources/urban_day_old_black_woman_1.png'},
+            {head: 'resources/urban_eve_young_black_woman_1.png', choice_1: 'resources/urban_day_young_white_man_1.png', choice_2: 'resources/urban_eve_young_white_man_1.png'},
+            {head: 'resources/urban_day_old_white_man_1.png', choice_1: 'resources/urban_day_old_white_woman_1.png', choice_2: 'resources/rural_day_young_black_man_1.png'},
+            {head: 'resources/urban_day_old_black_man_1.png', choice_1: 'resources/rural_eve_young_white_man_1.png', choice_2: 'resources/rural_day_young_black_woman_1.png'},
+            {head: 'resources/urban_day_young_white_woman_1.png', choice_1: 'resources/urban_day_old_black_man_1.png', choice_2: 'resources/rural_eve_old_black_woman_1.png'},
+            {head: 'resources/rural_eve_old_black_man_1.png', choice_1: 'resources/rural_eve_old_black_woman_1.png', choice_2: 'resources/rural_eve_young_white_woman_1.png'},
+            {head: 'resources/urban_day_young_black_man_1.png', choice_1: 'resources/urban_day_young_white_man_1.png', choice_2: 'resources/urban_eve_old_white_woman_1.png'},
+            {head: 'resources/urban_day_young_white_woman_1.png', choice_1: 'resources/rural_day_young_white_man_1.png', choice_2: 'resources/rural_day_old_black_woman_1.png'},
+            {head: 'resources/rural_eve_old_black_man_1.png', choice_1: 'resources/rural_eve_young_white_woman_1.png', choice_2: 'resources/urban_day_young_white_man_1.png'},
+            {head: 'resources/rural_day_young_white_woman_1.png', choice_1: 'resources/rural_eve_young_black_man_1.png', choice_2: 'resources/urban_eve_young_black_man_1.png'},
+            {head: 'resources/rural_eve_old_black_woman_1.png', choice_1: 'resources/urban_day_young_black_man_1.png', choice_2: 'resources/urban_eve_young_black_man_1.png'},
+            {head: 'resources/urban_eve_old_black_woman_1.png', choice_1: 'resources/urban_day_old_white_woman_1.png', choice_2: 'resources/rural_eve_young_white_man_1.png'},
+            {head: 'resources/rural_eve_young_black_man_1.png', choice_1: 'resources/rural_eve_young_black_woman_1.png', choice_2: 'resources/urban_day_old_white_man_1.png'},
+            {head: 'resources/rural_eve_young_black_man_1.png', choice_1: 'resources/urban_eve_young_black_woman_1.png', choice_2: 'resources/rural_day_young_black_woman_1.png'},
+            {head: 'resources/rural_eve_old_white_man_1.png', choice_1: 'resources/rural_day_old_white_woman_1.png', choice_2: 'resources/rural_eve_old_black_man_1.png'},
+            {head: 'resources/rural_day_old_black_man_1.png', choice_1: 'resources/urban_eve_old_white_man_1.png', choice_2: 'resources/rural_day_young_black_woman_1.png'},
+            {head: 'resources/rural_eve_old_black_woman_1.png', choice_1: 'resources/rural_eve_young_white_man_1.png', choice_2: 'resources/urban_day_young_black_man_1.png'},
+            {head: 'resources/rural_eve_old_white_woman_1.png', choice_1: 'resources/urban_eve_old_white_man_1.png', choice_2: 'resources/rural_eve_young_white_woman_1.png'},
+            {head: 'resources/rural_eve_old_black_woman_1.png', choice_1: 'resources/rural_eve_young_black_man_1.png', choice_2: 'resources/urban_day_old_white_man_1.png'},
+            {head: 'resources/rural_day_old_white_man_1.png', choice_1: 'resources/urban_eve_young_white_man_1.png', choice_2: 'resources/rural_day_old_white_woman_1.png'},
+            {head: 'resources/rural_eve_young_black_man_1.png', choice_1: 'resources/urban_eve_old_white_woman_1.png', choice_2: 'resources/rural_day_young_black_man_1.png'},
+            {head: 'resources/urban_eve_old_black_man_1.png', choice_1: 'resources/rural_day_old_black_woman_1.png', choice_2: 'resources/urban_eve_old_white_woman_1.png'},
+            {head: 'resources/urban_day_young_white_woman_1.png', choice_1: 'resources/urban_eve_old_black_woman_1.png', choice_2: 'resources/rural_eve_old_white_man_1.png'},
+            {head: 'resources/urban_eve_young_white_man_1.png', choice_1: 'resources/rural_eve_young_black_man_1.png', choice_2: 'resources/urban_eve_old_white_woman_1.png'},
+            {head: 'resources/rural_day_young_black_woman_1.png', choice_1: 'resources/urban_eve_old_white_man_1.png', choice_2: 'resources/rural_day_old_white_woman_1.png'},
+            {head: 'resources/urban_day_old_black_woman_1.png', choice_1: 'resources/rural_eve_old_white_woman_1.png', choice_2: 'resources/urban_day_young_black_woman_1.png'},
+            {head: 'resources/urban_day_old_black_man_1.png', choice_1: 'resources/rural_eve_old_black_man_1.png', choice_2: 'resources/rural_eve_young_black_woman_1.png'},
+            {head: 'resources/rural_day_old_black_woman_1.png', choice_1: 'resources/urban_day_young_white_woman_1.png', choice_2: 'resources/rural_day_young_white_woman_1.png'},
+            {head: 'resources/rural_day_young_white_woman_1.png', choice_1: 'resources/urban_eve_young_black_woman_1.png', choice_2: 'resources/urban_eve_young_white_man_1.png'},
+            {head: 'resources/rural_eve_old_white_man_1.png', choice_1: 'resources/rural_day_old_black_woman_1.png', choice_2: 'resources/rural_day_old_white_man_1.png'},
+            {head: 'resources/rural_eve_old_black_woman_1.png', choice_1: 'resources/urban_day_old_black_woman_1.png', choice_2: 'resources/rural_day_old_black_woman_1.png'},
+            {head: 'resources/rural_eve_young_black_woman_1.png', choice_1: 'resources/rural_day_young_black_woman_1.png', choice_2: 'resources/urban_eve_old_black_man_1.png'},
+            {head: 'resources/urban_day_old_white_man_1.png', choice_1: 'resources/urban_eve_old_white_woman_1.png', choice_2: 'resources/rural_day_old_white_man_1.png'},
+            {head: 'resources/rural_day_young_white_woman_1.png', choice_1: 'resources/urban_eve_young_black_woman_1.png', choice_2: 'resources/rural_eve_young_black_man_1.png'},
+            {head: 'resources/urban_day_young_white_man_1.png', choice_1: 'resources/rural_day_young_white_woman_1.png', choice_2: 'resources/urban_eve_young_black_woman_1.png'},
+            {head: 'resources/rural_day_young_white_woman_1.png', choice_1: 'resources/rural_day_old_black_woman_1.png', choice_2: 'resources/urban_day_old_black_man_1.png'},
+            {head: 'resources/rural_day_old_white_man_1.png', choice_1: 'resources/rural_eve_young_black_woman_1.png', choice_2: 'resources/rural_eve_old_white_man_1.png'},
+            {head: 'resources/rural_day_old_white_man_1.png', choice_1: 'resources/rural_day_young_black_man_1.png', choice_2: 'resources/urban_eve_young_white_woman_1.png'},
+            {head: 'resources/rural_eve_old_black_man_1.png', choice_1: 'resources/urban_eve_young_white_man_1.png', choice_2: 'resources/rural_day_young_white_man_1.png'},
+            {head: 'resources/rural_eve_young_black_man_1.png', choice_1: 'resources/urban_day_old_black_man_1.png', choice_2: 'resources/rural_eve_young_white_man_1.png'},
+            {head: 'resources/rural_eve_young_black_woman_1.png', choice_1: 'resources/urban_eve_old_white_man_1.png', choice_2: 'resources/rural_day_old_white_man_1.png'},
+            {head: 'resources/rural_day_young_white_woman_1.png', choice_1: 'resources/urban_eve_young_white_man_1.png', choice_2: 'resources/rural_day_young_black_woman_1.png'},
+            {head: 'resources/rural_eve_young_black_man_1.png', choice_1: 'resources/rural_eve_old_black_man_1.png', choice_2: 'resources/urban_eve_old_white_woman_1.png'},
+            {head: 'resources/urban_day_young_white_man_1.png', choice_1: 'resources/urban_eve_old_black_man_1.png', choice_2: 'resources/rural_eve_old_black_woman_1.png'},
+            {head: 'resources/urban_day_young_white_woman_1.png', choice_1: 'resources/urban_day_young_white_man_1.png', choice_2: 'resources/rural_eve_old_white_woman_1.png'},
+            {head: 'resources/rural_eve_old_white_man_1.png', choice_1: 'resources/urban_eve_old_black_woman_1.png', choice_2: 'resources/urban_day_old_black_woman_1.png'},
+            {head: 'resources/urban_day_young_black_woman_1.png', choice_1: 'resources/urban_eve_young_white_woman_1.png', choice_2: 'resources/rural_day_old_black_man_1.png'},
+            {head: 'resources/rural_eve_old_black_man_1.png', choice_1: 'resources/rural_eve_old_white_woman_1.png', choice_2: 'resources/urban_eve_young_white_man_1.png'},
+            {head: 'resources/urban_eve_old_black_man_1.png', choice_1: 'resources/urban_day_old_white_man_1.png', choice_2: 'resources/urban_eve_young_white_man_1.png'},
+            {head: 'resources/urban_eve_young_white_man_1.png', choice_1: 'resources/urban_eve_old_black_woman_1.png', choice_2: 'resources/rural_eve_young_black_woman_1.png'},
+            {head: 'resources/rural_day_young_black_woman_1.png', choice_1: 'resources/urban_eve_young_black_woman_1.png', choice_2: 'resources/rural_day_old_black_woman_1.png'},
+            {head: 'resources/rural_day_young_white_woman_1.png', choice_1: 'resources/urban_eve_old_white_woman_1.png', choice_2: 'resources/urban_eve_old_black_woman_1.png'},
+            {head: 'resources/rural_day_old_black_man_1.png', choice_1: 'resources/rural_day_young_white_man_1.png', choice_2: 'resources/rural_day_old_white_man_1.png'},
+            {head: 'resources/rural_day_young_black_woman_1.png', choice_1: 'resources/urban_day_young_black_woman_1.png', choice_2: 'resources/urban_day_old_black_man_1.png'},
+            {head: 'resources/urban_day_young_black_man_1.png', choice_1: 'resources/rural_eve_old_black_woman_1.png', choice_2: 'resources/rural_eve_young_white_woman_1.png'},
+            {head: 'resources/rural_eve_old_black_woman_1.png', choice_1: 'resources/rural_eve_young_white_man_1.png', choice_2: 'resources/urban_eve_old_black_man_1.png'},
+            {head: 'resources/rural_eve_young_white_woman_1.png', choice_1: 'resources/rural_day_old_white_man_1.png', choice_2: 'resources/urban_eve_young_white_man_1.png'},
+            {head: 'resources/rural_day_old_white_man_1.png', choice_1: 'resources/rural_day_old_white_woman_1.png', choice_2: 'resources/rural_eve_young_white_woman_1.png'},
+            {head: 'resources/rural_day_old_black_man_1.png', choice_1: 'resources/urban_eve_old_white_woman_1.png', choice_2: 'resources/rural_eve_young_black_woman_1.png'},
+            {head: 'resources/rural_day_old_white_man_1.png', choice_1: 'resources/urban_eve_young_white_man_1.png', choice_2: 'resources/urban_day_old_white_man_1.png'},
+            {head: 'resources/urban_eve_young_black_woman_1.png', choice_1: 'resources/urban_day_young_black_woman_1.png', choice_2: 'resources/urban_eve_old_white_man_1.png'},
+            {head: 'resources/urban_eve_young_black_woman_1.png', choice_1: 'resources/rural_eve_young_black_man_1.png', choice_2: 'resources/urban_day_young_black_man_1.png'},
+            {head: 'resources/urban_eve_old_white_man_1.png', choice_1: 'resources/rural_eve_old_white_woman_1.png', choice_2: 'resources/rural_eve_old_white_man_1.png'},
+            {head: 'resources/urban_eve_old_black_man_1.png', choice_1: 'resources/rural_eve_old_white_woman_1.png', choice_2: 'resources/rural_day_old_black_woman_1.png'},
+            {head: 'resources/rural_eve_young_black_woman_1.png', choice_1: 'resources/urban_day_old_white_man_1.png', choice_2: 'resources/urban_eve_old_black_woman_1.png'},
+            {head: 'resources/urban_day_old_black_man_1.png', choice_1: 'resources/urban_eve_young_black_man_1.png', choice_2: 'resources/urban_eve_young_white_man_1.png'},
+            {head: 'resources/urban_day_old_black_man_1.png', choice_1: 'resources/urban_eve_young_black_woman_1.png', choice_2: 'resources/rural_day_old_white_man_1.png'},
+            {head: 'resources/urban_day_old_black_man_1.png', choice_1: 'resources/rural_day_old_black_man_1.png', choice_2: 'resources/urban_day_young_white_man_1.png'},
+            {head: 'resources/urban_eve_young_black_man_1.png', choice_1: 'resources/urban_day_old_white_woman_1.png', choice_2: 'resources/urban_day_old_black_man_1.png'},
+            {head: 'resources/rural_day_old_white_woman_1.png', choice_1: 'resources/rural_eve_old_white_woman_1.png', choice_2: 'resources/urban_day_old_black_man_1.png'},
+            {head: 'resources/rural_day_young_black_man_1.png', choice_1: 'resources/rural_eve_old_black_man_1.png', choice_2: 'resources/urban_day_old_white_man_1.png'},
+            {head: 'resources/urban_eve_young_black_man_1.png', choice_1: 'resources/urban_eve_old_black_woman_1.png', choice_2: 'resources/urban_day_young_black_woman_1.png'},
+            {head: 'resources/rural_eve_old_black_man_1.png', choice_1: 'resources/urban_eve_old_white_man_1.png', choice_2: 'resources/urban_day_young_white_man_1.png'},
+            {head: 'resources/urban_eve_young_white_woman_1.png', choice_1: 'resources/rural_day_young_black_woman_1.png', choice_2: 'resources/rural_eve_old_white_woman_1.png'},
+            {head: 'resources/urban_day_old_white_woman_1.png', choice_1: 'resources/rural_day_young_white_woman_1.png', choice_2: 'resources/rural_day_old_white_man_1.png'},
+            {head: 'resources/urban_day_old_black_man_1.png', choice_1: 'resources/rural_eve_old_white_woman_1.png', choice_2: 'resources/rural_day_old_black_man_1.png'},
+            {head: 'resources/rural_eve_old_black_woman_1.png', choice_1: 'resources/rural_day_old_white_woman_1.png', choice_2: 'resources/urban_eve_old_black_man_1.png'},
+            {head: 'resources/urban_eve_old_black_man_1.png', choice_1: 'resources/rural_day_old_black_woman_1.png', choice_2: 'resources/rural_eve_old_white_woman_1.png'},
+            {head: 'resources/rural_eve_old_white_man_1.png', choice_1: 'resources/urban_eve_old_black_man_1.png', choice_2: 'resources/urban_eve_old_black_woman_1.png'},
+            {head: 'resources/urban_day_old_white_man_1.png', choice_1: 'resources/urban_eve_old_black_woman_1.png', choice_2: 'resources/urban_day_young_white_man_1.png'},
+            {head: 'resources/rural_eve_young_white_man_1.png', choice_1: 'resources/rural_eve_young_black_woman_1.png', choice_2: 'resources/urban_eve_young_white_man_1.png'},
+            {head: 'resources/rural_eve_young_white_man_1.png', choice_1: 'resources/urban_day_old_white_man_1.png', choice_2: 'resources/rural_day_old_white_woman_1.png'},
+            {head: 'resources/rural_day_young_black_woman_1.png', choice_1: 'resources/urban_eve_old_black_man_1.png', choice_2: 'resources/rural_day_young_white_woman_1.png'},
+            {head: 'resources/rural_eve_old_white_woman_1.png', choice_1: 'resources/urban_eve_young_white_woman_1.png', choice_2: 'resources/rural_day_old_black_woman_1.png'},
+            {head: 'resources/rural_eve_young_white_man_1.png', choice_1: 'resources/urban_day_old_black_man_1.png', choice_2: 'resources/rural_eve_young_black_woman_1.png'},
+            {head: 'resources/rural_day_old_white_woman_1.png', choice_1: 'resources/rural_eve_young_white_woman_1.png', choice_2: 'resources/urban_day_young_white_woman_1.png'},
+            {head: 'resources/rural_day_old_black_woman_1.png',choice_1: 'resources/urban_eve_young_black_woman_1.png',choice_2: 'resources/rural_eve_young_white_woman_1.png'},
+            {head: 'resources/urban_eve_young_black_man_1.png',choice_1: 'resources/rural_day_old_black_man_1.png',choice_2: 'resources/rural_eve_old_black_man_1.png'},
+            {head: 'resources/urban_eve_young_black_man_1.png',choice_1: 'resources/rural_day_young_black_woman_1.png',choice_2: 'resources/rural_day_young_white_woman_1.png'},
+            {head: 'resources/urban_eve_young_white_woman_1.png',choice_1: 'resources/urban_day_young_black_woman_1.png',choice_2: 'resources/rural_eve_old_white_man_1.png'},
+            {head: 'resources/rural_eve_old_white_woman_1.png',choice_1: 'resources/urban_day_young_white_woman_1.png',choice_2: 'resources/urban_day_old_white_woman_1.png'},
+            {head: 'resources/urban_eve_old_white_woman_1.png',choice_1: 'resources/rural_day_old_white_man_1.png',choice_2: 'resources/rural_eve_old_black_woman_1.png'},
+            {head: 'resources/urban_day_old_black_man_1.png',choice_1: 'resources/urban_eve_young_black_woman_1.png',choice_2: 'resources/rural_eve_young_black_woman_1.png'},
+            {head: 'resources/rural_eve_old_white_woman_1.png',choice_1: 'resources/urban_eve_young_white_man_1.png',choice_2: 'resources/rural_eve_old_black_woman_1.png'},
+            {head: 'resources/rural_eve_young_black_woman_1.png',choice_1: 'resources/rural_day_old_white_man_1.png',choice_2: 'resources/rural_day_young_black_man_1.png'},
+            {head: 'resources/urban_eve_old_white_woman_1.png',choice_1: 'resources/rural_eve_old_black_man_1.png',choice_2: 'resources/urban_eve_young_black_man_1.png'},
+            {head: 'resources/rural_day_old_white_woman_1.png',choice_1: 'resources/rural_day_young_black_man_1.png',choice_2: 'resources/rural_day_old_black_man_1.png'},
+            {head: 'resources/urban_eve_old_white_man_1.png',choice_1: 'resources/urban_eve_old_black_woman_1.png',choice_2: 'resources/urban_eve_young_white_man_1.png'},
+            {head: 'resources/urban_day_young_white_woman_1.png',choice_1: 'resources/rural_eve_young_black_woman_1.png',choice_2: 'resources/urban_eve_young_black_woman_1.png'},
+            {head: 'resources/rural_day_young_white_woman_1.png',choice_1: 'resources/urban_eve_young_white_man_1.png',choice_2: 'resources/rural_day_old_black_woman_1.png'},
+            {head: 'resources/urban_eve_old_black_woman_1.png',choice_1: 'resources/rural_day_old_white_woman_1.png',choice_2: 'resources/rural_eve_young_white_man_1.png'},
+            {head: 'resources/urban_eve_young_black_woman_1.png',choice_1: 'resources/rural_day_young_black_man_1.png',choice_2: 'resources/urban_day_old_white_woman_1.png'},
+            {head: 'resources/rural_day_young_white_man_1.png',choice_1: 'resources/urban_day_young_white_woman_1.png',choice_2: 'resources/urban_day_old_black_woman_1.png'},
+            {head: 'resources/urban_day_young_black_man_1.png',choice_1: 'resources/urban_day_old_black_man_1.png',choice_2: 'resources/rural_day_young_white_woman_1.png'},
+            {head: 'resources/rural_eve_old_white_woman_1.png',choice_1: 'resources/rural_day_old_black_woman_1.png',choice_2: 'resources/rural_eve_young_black_woman_1.png'},
+            {head: 'resources/urban_eve_old_black_woman_1.png',choice_1: 'resources/urban_day_old_white_man_1.png',choice_2: 'resources/rural_eve_old_black_woman_1.png'},
+            {head: 'resources/rural_eve_old_white_man_1.png',choice_1: 'resources/rural_day_young_white_man_1.png',choice_2: 'resources/rural_eve_old_black_woman_1.png'},
+            {head: 'resources/rural_eve_young_black_woman_1.png',choice_1: 'resources/rural_day_old_black_man_1.png',choice_2: 'resources/urban_eve_old_black_man_1.png'},
+            {head: 'resources/urban_eve_young_black_man_1.png',choice_1: 'resources/rural_day_old_white_man_1.png',choice_2: 'resources/urban_day_old_white_man_1.png'},
+            {head: 'resources/urban_eve_old_black_woman_1.png',choice_1: 'resources/rural_eve_young_black_man_1.png',choice_2: 'resources/urban_eve_young_black_woman_1.png'},
+            {head: 'resources/rural_day_young_white_woman_1.png',choice_1: 'resources/rural_day_old_black_man_1.png',choice_2: 'resources/rural_eve_young_black_woman_1.png'},
+            {head: 'resources/rural_day_young_white_woman_1.png',choice_1: 'resources/urban_eve_old_black_man_1.png',choice_2: 'resources/urban_day_old_black_woman_1.png'},
+            {head: 'resources/rural_eve_old_white_woman_1.png',choice_1: 'resources/urban_day_old_white_man_1.png',choice_2: 'resources/urban_eve_young_white_man_1.png'},
+            {head: 'resources/rural_eve_young_black_man_1.png',choice_1: 'resources/rural_eve_old_white_woman_1.png',choice_2: 'resources/urban_day_young_black_man_1.png'},
+            {head: 'resources/rural_day_young_black_man_1.png',choice_1: 'resources/rural_day_old_white_woman_1.png',choice_2: 'resources/rural_day_old_black_man_1.png'},
+            {head: 'resources/urban_day_young_black_woman_1.png',choice_1: 'resources/rural_eve_old_black_woman_1.png',choice_2: 'resources/urban_day_old_black_woman_1.png'},
+            {head: 'resources/rural_day_old_white_man_1.png',choice_1: 'resources/urban_eve_old_white_man_1.png',choice_2: 'resources/urban_eve_young_white_woman_1.png'},
+            {head: 'resources/urban_eve_old_black_woman_1.png',choice_1: 'resources/urban_eve_young_white_woman_1.png',choice_2: 'resources/urban_eve_old_white_woman_1.png'},
+            {head: 'resources/urban_eve_young_black_woman_1.png',choice_1: 'resources/urban_eve_young_white_man_1.png',choice_2: 'resources/urban_day_young_black_woman_1.png'},
+            {head: 'resources/rural_eve_young_white_man_1.png',choice_1: 'resources/urban_day_young_white_woman_1.png',choice_2: 'resources/urban_eve_old_black_woman_1.png'},
+            {head: 'resources/urban_eve_old_black_woman_1.png',choice_1: 'resources/rural_eve_old_white_man_1.png',choice_2: 'resources/urban_eve_old_white_man_1.png'},
+            {head: 'resources/urban_eve_young_black_woman_1.png',choice_1: 'resources/rural_eve_old_black_woman_1.png',choice_2: 'resources/rural_day_old_white_woman_1.png'},
+            {head: 'resources/urban_day_young_black_man_1.png',choice_1: 'resources/rural_eve_old_white_woman_1.png',choice_2: 'resources/rural_day_old_black_woman_1.png'},
+            {head: 'resources/rural_eve_old_white_woman_1.png',choice_1: 'resources/urban_eve_young_white_man_1.png',choice_2: 'resources/rural_day_old_white_man_1.png'},
+            {head: 'resources/rural_day_old_black_man_1.png',choice_1: 'resources/urban_day_old_white_woman_1.png',choice_2: 'resources/rural_eve_old_black_woman_1.png'},
+            {head: 'resources/rural_eve_old_white_woman_1.png',choice_1: 'resources/rural_day_old_white_woman_1.png',choice_2: 'resources/urban_day_young_black_man_1.png'},
+            {head: 'resources/rural_eve_young_black_man_1.png',choice_1: 'resources/urban_eve_young_black_woman_1.png',choice_2: 'resources/rural_eve_old_white_woman_1.png'},
+            {head: 'resources/rural_eve_young_black_woman_1.png',choice_1: 'resources/urban_day_old_black_woman_1.png',choice_2: 'resources/urban_eve_young_black_man_1.png'},
+            {head: 'resources/urban_eve_old_black_woman_1.png',choice_1: 'resources/rural_eve_young_black_woman_1.png',choice_2: 'resources/rural_eve_young_white_woman_1.png'},
+            {head: 'resources/urban_eve_young_black_woman_1.png',choice_1: 'resources/urban_eve_old_white_woman_1.png',choice_2: 'resources/urban_day_young_white_woman_1.png'},
+            {head: 'resources/rural_day_old_white_man_1.png',choice_1: 'resources/rural_day_old_black_woman_1.png',choice_2: 'resources/urban_day_old_black_woman_1.png'},
+            {head: 'resources/urban_eve_old_black_man_1.png',choice_1: 'resources/rural_day_young_white_woman_1.png',choice_2: 'resources/urban_eve_young_white_woman_1.png'},
+            {head: 'resources/rural_day_old_white_man_1.png',choice_1: 'resources/urban_day_young_white_man_1.png',choice_2: 'resources/urban_day_old_black_man_1.png'},
+            {head: 'resources/rural_day_old_black_man_1.png',choice_1: 'resources/urban_eve_young_black_woman_1.png',choice_2: 'resources/rural_day_old_black_woman_1.png'},
+            {head: 'resources/rural_eve_old_black_man_1.png',choice_1: 'resources/urban_eve_young_black_man_1.png',choice_2: 'resources/rural_day_young_white_man_1.png'},
+            {head: 'resources/rural_day_old_black_woman_1.png',choice_1: 'resources/rural_eve_young_white_man_1.png',choice_2: 'resources/rural_day_young_white_man_1.png'},
+            {head: 'resources/urban_day_young_white_woman_1.png',choice_1: 'resources/urban_eve_young_white_man_1.png',choice_2: 'resources/urban_day_old_black_man_1.png'},
+            {head: 'resources/urban_day_young_white_woman_1.png',choice_1: 'resources/urban_eve_young_black_man_1.png',choice_2: 'resources/rural_eve_old_black_woman_1.png'},
+            {head: 'resources/urban_eve_young_white_man_1.png',choice_1: 'resources/urban_eve_young_white_woman_1.png',choice_2: 'resources/rural_eve_old_black_man_1.png'},
+            {head: 'resources/urban_eve_old_black_man_1.png',choice_1: 'resources/rural_eve_old_black_woman_1.png',choice_2: 'resources/rural_day_old_black_man_1.png'},
+            {head: 'resources/rural_eve_old_white_woman_1.png',choice_1: 'resources/rural_day_old_white_man_1.png',choice_2: 'resources/urban_eve_young_white_man_1.png'},
+            {head: 'resources/urban_day_young_black_man_1.png',choice_1: 'resources/urban_day_old_white_man_1.png',choice_2: 'resources/urban_eve_young_white_woman_1.png'},
+            {head: 'resources/urban_eve_young_black_woman_1.png',choice_1: 'resources/rural_eve_old_black_man_1.png',choice_2: 'resources/rural_eve_young_black_man_1.png'},
+            {head: 'resources/rural_eve_old_black_man_1.png',choice_1: 'resources/urban_day_young_black_woman_1.png',choice_2: 'resources/urban_eve_young_black_woman_1.png'},
+            {head: 'resources/urban_day_young_white_woman_1.png',choice_1: 'resources/rural_day_old_black_man_1.png',choice_2: 'resources/urban_eve_old_white_woman_1.png'},
+            {head: 'resources/rural_day_old_black_man_1.png',choice_1: 'resources/urban_eve_old_black_man_1.png',choice_2: 'resources/rural_eve_young_black_man_1.png'},
+            {head: 'resources/rural_day_young_white_man_1.png',choice_1: 'resources/rural_day_old_black_man_1.png',choice_2: 'resources/rural_day_young_black_woman_1.png'},
+            {head: 'resources/urban_day_old_black_woman_1.png',choice_1: 'resources/rural_day_young_black_man_1.png',choice_2: 'resources/urban_day_old_black_man_1.png'},
+            {head: 'resources/rural_eve_young_black_man_1.png',choice_1: 'resources/rural_eve_old_black_man_1.png',choice_2: 'resources/rural_eve_old_white_man_1.png'},
+            {head: 'resources/urban_eve_old_black_woman_1.png',choice_1: 'resources/rural_day_old_black_woman_1.png',choice_2: 'resources/urban_day_old_black_man_1.png'},
+            {head: 'resources/urban_day_old_black_woman_1.png',choice_1: 'resources/rural_day_old_white_woman_1.png',choice_2: 'resources/urban_eve_old_black_man_1.png'},
+            {head: 'resources/urban_day_old_black_man_1.png',choice_1: 'resources/rural_day_young_white_woman_1.png',choice_2: 'resources/rural_eve_young_white_man_1.png'},
+            {head: 'resources/urban_eve_old_black_woman_1.png',choice_1: 'resources/rural_day_old_white_man_1.png',choice_2: 'resources/rural_day_old_black_man_1.png'},
+            {head: 'resources/rural_day_young_black_man_1.png',choice_1: 'resources/rural_eve_young_black_woman_1.png',choice_2: 'resources/urban_eve_old_white_man_1.png'},
+            {head: 'resources/rural_eve_young_black_woman_1.png',choice_1: 'resources/rural_eve_old_white_man_1.png',choice_2: 'resources/rural_day_old_white_woman_1.png'},
+            {head: 'resources/rural_day_young_black_man_1.png',choice_1: 'resources/rural_eve_old_white_man_1.png',choice_2: 'resources/rural_day_old_black_woman_1.png'},
+            {head: 'resources/rural_day_young_white_woman_1.png',choice_1: 'resources/rural_day_old_white_woman_1.png',choice_2: 'resources/rural_eve_old_white_woman_1.png'},
+            {head: 'resources/rural_eve_old_white_man_1.png',choice_1: 'resources/rural_eve_young_white_man_1.png',choice_2: 'resources/urban_eve_young_black_man_1.png'},
+            {head: 'resources/urban_eve_old_white_woman_1.png',choice_1: 'resources/urban_day_old_white_woman_1.png',choice_2: 'resources/rural_day_young_white_man_1.png'},
+            {head: 'resources/urban_eve_young_black_woman_1.png',choice_1: 'resources/rural_day_young_black_woman_1.png',choice_2: 'resources/rural_eve_young_black_woman_1.png'},
+            {head: 'resources/rural_eve_young_white_woman_1.png',choice_1: 'resources/rural_eve_old_black_woman_1.png',choice_2: 'resources/urban_day_old_black_man_1.png'},
+            {head: 'resources/urban_day_old_white_man_1.png',choice_1: 'resources/rural_eve_young_black_woman_1.png',choice_2: 'resources/rural_eve_young_black_man_1.png'},
+            {head: 'resources/rural_eve_young_black_woman_1.png',choice_1: 'resources/rural_day_old_white_woman_1.png',choice_2: 'resources/urban_eve_young_white_woman_1.png'}]
+
+          
+    var check_faces = [
+           {head: 'resources/rural_eve_old_black_man_1.png', choice_1: 'resources/rural_eve_old_white_man_1.png', choice_2: 'resources/rural_eve_old_black_man_1.png', correct_choice: 1},
+            {head: 'resources/rural_eve_old_white_man_1.png' , choice_1: 'resources/rural_eve_old_black_man_1.png', choice_2: 'resources/rural_eve_old_white_man_1.png', correct_choice: 1},
+        
+           {head: 'resources/urban_eve_young_white_woman_1.png', choice_1: 'resources/urban_eve_young_white_woman_1.png', choice_2: 'resources/urban_day_old_white_woman_1.png', correct_choice: 0},
+            {head: 'resources/urban_day_old_white_woman_1.png' , choice_1: 'resources/urban_day_old_white_woman_1.png', choice_2: 'resources/urban_eve_young_white_woman_1.png', correct_choice: 0},
+        
+           {head: 'resources/rural_eve_young_black_man_1.png', choice_1: 'resources/rural_eve_young_white_man_1.png', choice_2: 'resources/rural_eve_young_black_man_1.png', correct_choice: 1},
+            {head: 'resources/rural_eve_young_white_man_1.png', choice_1: 'resources/rural_eve_young_white_man_1.png' , choice_2: 'resources/rural_eve_young_black_man_1.png', correct_choice: 0},
+        
+           {head: 'resources/urban_day_old_white_man_1.png', choice_1: 'resources/urban_day_old_white_man_1.png', choice_2: 'resources/rural_eve_young_black_woman_1.png', correct_choice: 0},
+                   {head: 'resources/rural_eve_young_black_woman_1.png', choice_1: 'resources/urban_day_old_white_man_1.png', choice_2: 'resources/rural_eve_young_black_woman_1.png', correct_choice: 1},
+        
+           {head: 'resources/urban_day_young_black_woman_1.png', choice_1: 'resources/rural_day_old_white_woman_1.png', choice_2: 'resources/urban_day_young_black_woman_1.png', correct_choice: 1},
+                 {head: 'resources/rural_day_old_white_woman_1.png', choice_1: 'resources/rural_day_old_white_woman_1.png', choice_2: 'resources/urban_day_young_black_woman_1.png', correct_choice: 0}
+      ]
+      
+    
+   //to shuffle the array of button choices at the beginning of the experiment   
+    function shuffle(array) {
+        let currentIndex = array.length,  randomIndex;
+        // While there remain elements to shuffle.
+        while (currentIndex != 0) {
+        // Pick a remaining element.
+        randomIndex = Math.floor(Math.random() * currentIndex);
+        currentIndex--;
+        // And swap it with the current element.
+        [array[currentIndex], array[randomIndex]] = [
+        array[randomIndex], array[currentIndex]];
+        }
+        return array;
+    }
+        
+    var test_stimuli = [];
+    
+    // to get a random item from the array
+    function getRandomItems(arr) {
+        var temp_array = jsPsych.randomization.sampleWithoutReplacement(arr, 2);
+          arr = arr.filter(e => e !== temp_array[0]);
+          arr = arr.filter(e => e !== temp_array[1]);
+        return temp_array;
+    }
+      
+      
+    /* define welcome message trial */
+    var welcome = {
+      type: jsPsychHtmlKeyboardResponse,
+      stimulus: "Welcome to the experiment. Press any key to begin."
+    };
+    timeline.push(welcome);
+      
+      
+    timeline.push({
+      type: jsPsychFullscreen,
+      fullscreen_mode: true
+    });    
+         
+    /* define consent trail */
+    var consent = {
+        type: jsPsychImageButtonResponse,
+        stimulus: "kc_lab_consent_prolific.png",
+        choices: ["Consent & Continue"]
+    };
+    timeline.push(consent);
+      
+    var lasttrialdata_rt = 0;
+          
+    /* define testing instructions */
+    var instructions = {
+      type: jsPsychHtmlButtonResponse,
+      stimulus: "<p>In each trial of this task, you will see three images: one target item on top, and two choices beneath the target item." +
+        "</p><p>For each trial, <strong>please select the item that is most like the target item.</strong>"+
+        "<p>There will be around 600 trials. You will have opportunities to take a break throughout. </p>"+
+          "<p>Click 'Continue' to begin the test.</p>",
+        choices: ["Continue"],
+      post_trial_gap: 2000
+    };
+    timeline.push(instructions);  
+      
+      
+      var fixation = {
+          type: jsPsychHtmlKeyboardResponse,
+            stimulus: '+',
+            choices: "NO_KEYS",
+            trial_duration: 500
+        };
+      timeline.push(fixation);
+      
+      var arr_pair = [];
+
+// define the trials!
+      var trial_face = {
+          type: jsPsychImageButtonResponse,
+            stimulus: jsPsych.timelineVariable('face'),         
+            choices: function(){
+                shuffle(face_arr);
+                arr_pair = getRandomItems(face_arr);
+                // the following makes sure the choices and stimulus are NOT the same!
+                while(arr_pair[0] == jsPsych.timelineVariable('face') || arr_pair[1] == jsPsych.timelineVariable('face')){
+                    arr_pair = getRandomItems(face_arr);
+                }
+                return arr_pair;
+            },
+            button_html: '<button class="jspsych-btn"><img src= %choice%></button>',
+            on_finish: function(data){
+                shuffle(face_arr);
+                data.choices = arr_pair;
+                n = 1;
+                var data_last1 = jsPsych.data.get().last(n);
+                lasttrialdata_rt = data_last1.select('rt').mean();
+                if (lasttrialdata_rt < 900){
+                      data.speedy = true;
+                    } else {
+                      data.speedy = false; 
+                }
+                data.validation = false;
+                data.sampleAlg = "random";
+            }
+      };
+      
+
+      
+      // define the validation trials!
+      var validation_trial = {
+          type: jsPsychImageButtonResponse,
+            stimulus: jsPsych.timelineVariable('head'),         
+            choices: function(){
+                arr_pair = [jsPsych.timelineVariable('choice_1'), jsPsych.timelineVariable('choice_2')];
+                return arr_pair;
+            },
+            button_html: '<button class="jspsych-btn"><img src= %choice%></button>',
+          on_finish: function(data){
+              data.choices = arr_pair;
+              n = 1;
+                var data_last = jsPsych.data.get().last(n);
+                lasttrialdata_rt = data_last.select('rt').mean();
+                if (lasttrialdata_rt < 1000){
+                      data.speedy = true;
+                    } else {
+                      data.speedy = false; 
+                }
+              data.validation = true;
+              data.sampleAlg = "validation";
+          }
+      };
+      
+      
+      // define the attention checks!
+      var check_trial = {
+          type: jsPsychImageButtonResponse,
+            stimulus: jsPsych.timelineVariable('head'),         
+            choices: function(){
+                arr_pair = [jsPsych.timelineVariable('choice_1'), jsPsych.timelineVariable('choice_2')];
+                return arr_pair;
+            },
+            button_html: '<button class="jspsych-btn"><img src= %choice%></button>',
+          on_finish: function(data){
+              data.choices = arr_pair;
+              if (data.response == jsPsych.timelineVariable('correct_choice')){
+                  data.correct = true;
+                } else {
+                  data.correct = false; 
+              }
+              data.sampleAlg = "check";
+          }
+      };
+    
+        
+        var if_trial_check = {
+            type: jsPsychHtmlKeyboardResponse,
+            stimulus: "<p><strong>Incorrect!</strong></p>That was an attention check. Please pay attention while completing this task.<p>Press 'y' to continue.</p>",
+            choices:["y"]
+        }
+
+        var if_node_check = {
+            timeline: [if_trial_check],
+            conditional_function: function(){
+                // get the data from the previous trial,
+                // and check which key was pressed
+                var last_trial_correct = jsPsych.data.get().last(1).values()[0].correct;
+                if(last_trial_correct){
+                    return false; // the parameter value has to be returned from the function
+                } else {
+                    return true; // the parameter value has to be returned from the function
+                }
+            }
+        }
+        
+        var if_trial_speed = {
+            type: jsPsychHtmlKeyboardResponse,
+            stimulus: "<p><strong>You're going too fast.</strong><p>Please slow down and assess each triplet." +
+                  "<p>Press 'y' to continue.</p></p>",
+            choices: ["y"]
+        }
+
+        var if_node_speed = {
+            timeline: [if_trial_speed],
+            conditional_function: function(){
+                // get the data from the previous trial,
+                // and check which key was pressed
+                var last_trial_speed = jsPsych.data.get().last(1).values()[0].speedy;
+                if(last_trial_speed){
+                    return true; // the parameter value has to be returned from the function;
+                } else{
+                    return false;
+                }
+            }
+        }
+    
+       
+    // okay so this is to get a random set of elements...  
+    function getRandom(arr, n) {
+        var result = new Array(n),
+            len = arr.length,
+            taken = new Array(len);
+        if (n > len)
+            throw new RangeError("getRandom: more elements taken than available");
+        while (n--) {
+            var x = Math.floor(Math.random() * len);
+            result[n] = arr[x in taken ? taken[x] : x];
+            taken[x] = --len in taken ? taken[len] : len;
+        }
+        return result;
+    }
+      
+    //actually grabbing them
+    var selected_validation_faces = getRandom(validation_faces, 50); // selecting 50 random validation trials. there should be 10 blocks with 10 repeating validation trials
+      
+      var validation_shuffled_doubled = jsPsych.randomization.repeat(selected_validation_faces, 2);
+      
+      
+    
+var validation_procedure_faces = {
+    timeline: [fixation, validation_trial, if_node_speed],
+    timeline_variables: validation_shuffled_doubled,
+    sample :{
+        type: 'without-replacement',
+        size: 10
+    }
+};
+      
+var trial_procedure_faces = {
+    timeline: [fixation, trial_face, if_node_speed],
+    timeline_variables: stimuli_face,
+    randomize_order: true,
+    sample: {
+        type: 'with-replacement',
+        size: 50
+    }
+};
+          
+      
+var check_faces = {
+    timeline: [fixation, check_trial, if_node_check],
+    timeline_variables: check_faces,
+    sample: {
+        type: 'without-replacement',
+        size: 1 
+    }
+};      
+       
+      
+      
+      
+      
+var quick_break = {
+      type: jsPsychHtmlButtonResponse,
+      stimulus: "Nice job! Feel free to take a quick break, then click 'Continue' when you are ready proceed to the next round." +
+        "<p>Remember, your task is to <strong>select the item closest to the item on top.</strong>",
+        choices: ["Continue"]
+    };
+          
+      
+      
+var face_procedure = {
+    timeline: [trial_procedure_faces, check_faces, validation_procedure_faces, check_faces, quick_break],
+    randomize_order: true,
+    repetitions: 10
+};
+timeline.push(face_procedure);
+      
+      
+      // total number of face trials = (10*10) + (50*10) + (1*10) = 610 trials 
+      
+      
+
+      
+    
+var demographic_instructions = {
+      type: jsPsychHtmlButtonResponse,
+      stimulus: "<p>Awesome!<p>For this last part of the experiment, please provide us with information about yourself.</p> ",
+      choices: ["Continue"],
+      post_trial_gap: 1000
+    };
+timeline.push(demographic_instructions);
+      
+      
+var demographics = {
+    type: jsPsychSurveyMultiSelect,
+    questions: [
+      {prompt: "Which categories describe you? Select all that apply to you:", 
+        options: ["American Indian or Alaska Native - For example, Navajo Nation, Mayan", 
+                  "Asian - For example, Chinese, Asian Indian",
+                  "Black or African American - For example, Jamaican, Ethiopian",
+                  "Hispanic or Latino - For example, Mexican or Mexican American, Puerto Rican, Salvadoran",
+                 "Middle Eastern or North African - For example, Lebanese, Iranian, Moroccan",
+                 "Native Hawaiian or Other Pacific Islander - For example, Somoan, Fijian",
+                 "White - For example, German, Irish",
+                 "Some other race, ethnicity, or origin",
+                 "I prefer not to answer"], 
+        horizontal: false,
+        required: true,
+        name: 'race_eth'}
+    ]};
+    timeline.push(demographics);  
+
+    
+      
+    var id_age = {
+      type: jsPsychSurveyText,
+      questions: [{prompt: "Please enter your age (in years):", rows: 1, columns: 6, name: "age", required: true}, 
+                  {prompt: "How do you currently describe your gender identity? Please specify.", rows: 1, columns: 60, name: "gender"},
+                  {prompt: "What is your ZIP code?", rows : 1, columns: 6, name: "zip"}
+                 ]
+    };
+    timeline.push(id_age);
+      
+      
+      
+   var goodbye = {
+      type: jsPsychHtmlButtonResponse,
+      stimulus: function(){
+        output = "Woohoo! You have finished the experiment. <br>";
+          if(urlvar.workerId.length > 7){
+              output = output + "<strong> Here is your secret code: z9wikPOPmi1 </strong><br>";
+          }
+        output = output + "You may now close this screen. Goodbye!<br><br>";
+      return output;
+      },
+      choices: ["Complete Experiment"]    
+   };
+    timeline.push(goodbye);
+
+
+    
+       
+      
+    jsPsych.run(timeline);
+
+
+  </script>
+  </html>
+
+<!--
+
+-->
