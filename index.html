@@ -495,7 +495,7 @@
                     } else {
                       data.speedy = false; 
                 }
-                data.validation = false;
+                //data.validation = false;
                 data.sampleAlg = "random";
             }
       };
@@ -524,7 +524,7 @@
                     } else {
                       data.speedy = false;
                 }
-              data.validation = true;
+              //data.validation = true;
               data.sampleAlg = "validation";
           }
       };
@@ -657,14 +657,18 @@ var quick_break = {
       
       
 var face_procedure = {
-    timeline: [trial_procedure_faces, check_faces, validation_procedure_faces, check_faces, quick_break],
+    timeline: [trial_procedure_faces, check_faces, validation_procedure_faces, check_faces],
     randomize_order: true,
-    repetitions: 10
+    repetitions: 5
 };
-timeline.push(face_procedure);
+      
+      timeline.push(face_procedure);
+      timeline.push(quick_break);
+      timeline.push(face_procedure);
       
       
-      // total number of face trials = (10*10) + (50*10) + (1*10) = 610 trials 
+      
+      // total number of face trials = (10*5*2) + (50*5*2) + (1*5*2) = 610 trials 
       
       
 
