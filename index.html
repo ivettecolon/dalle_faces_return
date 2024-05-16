@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Individual Differences Triplet Embeddings: Faces</title>
+    <title>Individual Differences Triplet Embeddings: Faces Returners</title>
       
     <script src="https://unpkg.com/jspsych@7.2.1"></script>
     <script src="https://unpkg.com/@jspsych/plugin-html-keyboard-response@1.1.0"></script>
@@ -46,7 +46,6 @@
     var secret_code  = jsPsych.randomization.randomID(8);
     var filename = "triplets_fpo_faces_returners_" + secret_code + ".csv";
 
-      
     var urlvar = jsPsych.data.urlVariables();  
       
       
@@ -452,7 +451,7 @@
       type: jsPsychHtmlButtonResponse,
       stimulus: "<p>In each trial of this task, you will see three images: one target item on top, and two choices beneath the target item." +
         "</p><p>For each trial, <strong>please select the item that is most like the target item.</strong>"+
-        "<p>There will be around 600 trials. You will have opportunities to take a break throughout. </p>"+
+        "<p>There will be around 600 trials. You will have an opportunity to take a break halfway through. </p>"+
           "<p>Click 'Continue' to begin the test.</p>",
         choices: ["Continue"],
       post_trial_gap: 2000
@@ -608,9 +607,8 @@
     }
       
     //actually grabbing them
-    var selected_validation_faces = getRandom(validation_faces, 50); // selecting 50 random validation trials. there should be 10 blocks with 10 repeating validation trials
-      
-      var validation_shuffled_doubled = jsPsych.randomization.repeat(selected_validation_faces, 2);
+    var selected_validation_faces = getRandom(validation_faces, 50); // 
+    var validation_shuffled_doubled = jsPsych.randomization.repeat(selected_validation_faces, 2);
       
       
     
@@ -641,10 +639,7 @@ var check_faces = {
         type: 'without-replacement',
         size: 1 
     }
-};      
-       
-      
-      
+};            
       
       
 var quick_break = {
@@ -665,14 +660,9 @@ var face_procedure = {
       timeline.push(face_procedure);
       timeline.push(quick_break);
       timeline.push(face_procedure);
-      
-      
-      
+    
       // total number of face trials = (10*5*2) + (50*5*2) + (1*5*2) = 610 trials 
-      
-      
 
-      
     
 var demographic_instructions = {
       type: jsPsychHtmlButtonResponse,
@@ -714,7 +704,7 @@ var demographics = {
     timeline.push(id_age);
       
       
-             timeline.push(save_data);
+    timeline.push(save_data); //ACTUALLY PUSHING DATA TO SERVER
       
    var goodbye = {
       type: jsPsychHtmlButtonResponse,
@@ -729,9 +719,6 @@ var demographics = {
       choices: ["Complete Experiment"]    
    };
     timeline.push(goodbye);
-
-
-    
 
       
     jsPsych.run(timeline);
