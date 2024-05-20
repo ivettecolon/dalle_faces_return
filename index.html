@@ -618,7 +618,7 @@ var validation_procedure_faces = {
     timeline_variables: validation_shuffled_doubled,
     sample :{
         type: 'without-replacement',
-        size: 1//0
+        size: 10
     }
 };
       
@@ -628,7 +628,7 @@ var trial_procedure_faces = {
     randomize_order: true,
     sample: {
         type: 'with-replacement',
-        size: 5//0
+        size: 50
     }
 };
           
@@ -655,7 +655,7 @@ var quick_break = {
 var face_procedure = {
     timeline: [trial_procedure_faces, check_faces, validation_procedure_faces],
     randomize_order: true,
-    repetitions: 1//5
+    repetitions: 5
 };
       
       timeline.push(face_procedure);
