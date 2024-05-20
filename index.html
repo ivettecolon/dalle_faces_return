@@ -29,7 +29,7 @@
 
           
     var jsPsych = initJsPsych({
-        show_progress_bar:true,
+        show_progress_bar:false,
         on_data_update: function(){
             jsPsych.data.addProperties({worker_id: urlvar.workerId});
             timeline.push(save_data);
