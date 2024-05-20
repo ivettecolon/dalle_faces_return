@@ -618,7 +618,7 @@ var validation_procedure_faces = {
     timeline_variables: validation_shuffled_doubled,
     sample :{
         type: 'without-replacement',
-        size: 10
+        size: 1//0
     }
 };
       
@@ -628,7 +628,7 @@ var trial_procedure_faces = {
     randomize_order: true,
     sample: {
         type: 'with-replacement',
-        size: 50
+        size: 5//0
     }
 };
           
@@ -653,9 +653,9 @@ var quick_break = {
       
       
 var face_procedure = {
-    timeline: [trial_procedure_faces, check_faces, validation_procedure_faces, check_faces],
+    timeline: [trial_procedure_faces, check_faces, validation_procedure_faces],
     randomize_order: true,
-    repetitions: 5
+    repetitions: 1//5
 };
       
       timeline.push(face_procedure);
@@ -712,12 +712,12 @@ var demographics = {
       stimulus: function(){
         output = "Woohoo! You have finished the experiment. <br>";
           if(urlvar.workerId.length > 7){
-              output = output + "<strong> Here is your secret code: z9wikPOPmi1 </strong><br>";
+              output = output + "<strong> Here is your secret code: C58AKPLN </strong><br>";
           }
-        output = output + "You may now close this screen. Goodbye!<br><br>";
+        output = output + "Click the button below to complete the experiment. Goodbye!<br><br>";
       return output;
       },
-      choices: ["Complete Experiment"]    
+      choices: ["<a href='https://app.prolific.com/submissions/complete?cc=C58AKPLN'>Complete Experiment</a>"]      
    };
     timeline.push(goodbye);
 
